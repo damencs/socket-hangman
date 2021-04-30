@@ -117,6 +117,23 @@ public class FileData {
         System.out.println();
     }
 
+    public boolean win_condition(String[] answer, int answer_length)
+    {
+        for (int i = 0; i < answer_length; i++)
+        {
+            if (answer[i] == "_ ")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean lose_condition(int max_guess)
+    {
+        return max_guess < 1;
+    }
+
     /*
     main method with function calls
      */
@@ -174,6 +191,11 @@ public class FileData {
                 hangman.letter_substitution(guess, word, answer);
                 hangman.used_guess(guess, used_characters, guess_count);
                 guess_count++;
+                if (hangman.win_condition(answer, answer_length))
+                {
+                    System.out.println("Congrats, you have won the game!!!");
+                    return;
+                }
             }
 
             else
@@ -182,6 +204,11 @@ public class FileData {
                 System.out.println("\nI'm sorry your guess was incorrect, you have " + max_guesses + " guesses left.\n");
                 hangman.used_guess(guess, used_characters, guess_count);
                 guess_count++;
+                if (hangman.lose_condition(max_guesses))
+                {
+                    System.out.println("I'm sorry, you have lost the game. Please try again.");
+                    return;
+                }
             }
 
             hangman.print_hangman(answer, answer_length);
