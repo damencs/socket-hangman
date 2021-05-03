@@ -101,6 +101,10 @@ public class FileData {
         }
     }
 
+    /*
+    This method takes in the guess by the user and compares it with the previous answers that are stored in an
+    array so that the user can't guess the same answer multiple times
+     */
     public String[] used_guess(char guess, String[] used_characters, int index)
     {
         String character = Character.toString(guess);
@@ -108,6 +112,10 @@ public class FileData {
         return used_characters;
     }
 
+    /*
+    This method prints out the array of characters containing the word that is to be guessed by the player,
+    if a letter has not been guessed yet then the letter is marked by a "_ ".
+     */
     public void print_hangman(String[] answer, int answer_length)
     {
         for (int j = 0; j < answer_length; j++)
@@ -117,6 +125,9 @@ public class FileData {
         System.out.println();
     }
 
+    /*
+    This method is marks the win condition for the player. If the requirements are met then the player wins the game.
+     */
     public boolean win_condition(String[] answer, int answer_length)
     {
         for (int i = 0; i < answer_length; i++)
@@ -129,6 +140,9 @@ public class FileData {
         return true;
     }
 
+    /*
+    This method marks the lose condition for the player. If the requirements are met then the player loses the game.
+     */
     public boolean lose_condition(int max_guess)
     {
         return max_guess < 1;
